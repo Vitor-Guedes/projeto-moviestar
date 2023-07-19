@@ -1,2 +1,2 @@
-# projeto-moviestar
-Projeto de estudo da udemy para demonstração de conhecimento.
+# Projeto - MovieStar
+Projeto de estudo da udemy para demonstração de conhecimento. 
