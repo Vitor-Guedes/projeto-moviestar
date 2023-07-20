@@ -182,7 +182,20 @@ class UserDAO implements UserDAOInterface
 
     public function findById($id)
     {
+        if (empty($id)) {
+            return false;
+        }
 
+        $query = "SELECT * FROM users WHERE id = :id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $data = $stmt->fetch();
+            return $this->buildUser($data);
+        }
+        return false;
     }
 
     public function changePassword(User $user)

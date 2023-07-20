@@ -28,7 +28,7 @@
                 aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <form action="" method="post" id="search-form" class="form-inline my-2 my-lg-0">
+            <form action="<?php BASE_URL ?>/search" method="get" id="search-form" class="form-inline my-2 my-lg-0">
                 <input type="text" name="search" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Filmes" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>

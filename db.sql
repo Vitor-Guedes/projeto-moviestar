@@ -14,13 +14,14 @@ create table if not exists movies(
     title varchar(100) not null,
     description text,
     image varchar(200),
+    category varchar(100),
     trailer varchar(150),
     length varchar(50),
     user_id int(10) unsigned,
     foreign key (user_id) references users (id)
 )engine=innodb;
 
-create table if not exists reviws(
+create table if not exists reviews(
     id int(10) unsigned auto_increment primary key,
     rating int,
     review text,
