@@ -5,7 +5,10 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libpng-dev \
     libzip-dev \
-    unzip
+    unzip \
+    openssl \
+    libssl-dev \
+    libcurl4-openssl-dev
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 

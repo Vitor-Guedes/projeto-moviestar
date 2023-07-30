@@ -18,6 +18,8 @@
         "slim/slim": "4.*",
         "slim/psr7": "1.6.x-dev",
         "mongodb/mongodb": "^1.17@dev",
-        "slim/twig-view": "3.x-dev"
+        "slim/twig-view": "3.x-dev",
+        "juliangut/slim-php-di" : "*",
+        "slim/flash": "dev-master"
     }
 }

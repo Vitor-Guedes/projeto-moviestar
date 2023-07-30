@@ -43,7 +43,7 @@
                 <?php else : ?>
 
                     <li class="nav-item">
-                        <a href="{{ base_path() }}/auth" class="nav-link">Entrar | Cadastrar</a>
+                        <a href="{{ url_for('account') }}" class="nav-link">Entrar | Cadastrar</a>
                     </li>
 
                 <?php endif ;?>
