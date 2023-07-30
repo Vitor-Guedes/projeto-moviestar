@@ -1,9 +1,23 @@
-<?php require_once('../settings.php') ?>
+<?php
 
-<?php require_once(TEMPLATES_DIR . '/header.php') ?>
+use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
 
-<div id="main-container" class="container-fluid">
-    <?php require_once($template) ?>
-</div>
+require '../vendor/autoload.php';
 
-<?php require_once(TEMPLATES_DIR . '/footer.php') ?>
+$app = AppFactory::create();
+
+$app->addRoutingMiddleware();
+
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+
+require_once '../src/Routes/collection.php';
+
+$twig = Twig::create('../src/Views/', ['cache' => false]);
+
+// Add Twig-View Middleware
+$app->add(TwigMiddleware::create($app, $twig));
+
+// Run app
+$app->run();

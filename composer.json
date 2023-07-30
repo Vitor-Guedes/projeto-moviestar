@@ -1,0 +1,23 @@
+{
+    "name": "guedes/moviestar",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Guedes\\Moviestar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitor Guedes",
+            "email": "vtr2.0@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "1.6.x-dev",
+        "mongodb/mongodb": "^1.17@dev",
+        "slim/twig-view": "3.x-dev"
+    }
+}
