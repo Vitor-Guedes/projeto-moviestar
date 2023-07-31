@@ -55,21 +55,7 @@ class User
 
     public function create(array $data = [])
     {
-        $data['password'] = $this->generatePassword($data['password']);
-        $this->buildUser($data);
-
-        $user = $this->findByEmail($data['email']);
-
-        if (!$user) {
-            $storeResult = $this->getCollection()->insertOne($this->toArray());
-    
-            if ($storeResult->getInsertedCount()) {
-                $this->id = $storeResult->getInsertedId();
-                return $this;
-            }
-        }
-                    
-        return "Email Já Exister!";
+        return $this->getCollection()->insertOne($data);
     }
 
     public function findByEmail(string $email)
@@ -77,17 +63,38 @@ class User
         $data = $this->getCollection()->findOne([
             'email' => $email
         ]);
+        return !$data ? false : $this->buildUser((array) $data);
+    }
 
-        if (!$data) {
-            return false;
-        }
-
-        return $this->buildUser((array)$data);
+    public function findByToken(string $token)
+    {
+        $data = $this->getCollection()->findOne([
+            'token' => $token
+        ]);
+        return !$data ? false : $this->buildUser((array) $data);
     }
 
     public function generatePassword(string $password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function generateToken()
+    {
+        return bin2hex(random_bytes(50));
+    }
+
+    public function update()
+    {
+        $updateResult = $this->getCollection()
+            ->updateOne([
+                'email' => $this->email
+            ], ['$set' => $this->toArray()]);
+        
+        return $updateResult->getModifiedCount() == 1
+            && $updateResult->getMatchedCount() == 1
+                ? $this 
+                    : false;
     }
 
     public function toArray()
@@ -106,5 +113,10 @@ class User
         return array_filter($data, function ($attribute) {
             return ! empty($attribute);
         });
+    }
+
+    public function getMovies()
+    {
+        return [];
     }
 }

@@ -23,6 +23,7 @@
             <ul class="navbar-nav">
                 <?php if ($userData) : ?>
 
+                {% if (user) %}
                     <li class="nav-item">
                         <a href="{{ base_path() }}/newmovie" class="nav-link">
                             <i class="far fa-plus-square"></i> Incluir Filme
@@ -33,20 +34,17 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ base_path() }}/edit/profile" class="nav-link bold">
-                            $userData->name
+                            {{ user.name }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ base_path() }}/logout" class="nav-link">Sair</a>
                     </li>
-                        
-                <?php else : ?>
-
+                {% else %}
                     <li class="nav-item">
                         <a href="{{ url_for('account') }}" class="nav-link">Entrar | Cadastrar</a>
                     </li>
-
-                <?php endif ;?>
+                {% endif %}
             </ul>
         </div>
     </nav>

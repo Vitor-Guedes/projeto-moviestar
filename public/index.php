@@ -28,6 +28,7 @@ require_once '../src/Routes/collection.php';
 $twig = Twig::create('../src/Views/', ['cache' => false]);
 $enviroment = $twig->getEnvironment();
 $enviroment->addGlobal('flash', $container->get('flash'));
+$enviroment->addGlobal('user', $container->get('user'));
 
 // Add Twig-View Middleware
 $app->add(TwigMiddleware::create($app, $twig));

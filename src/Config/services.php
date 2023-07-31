@@ -3,6 +3,7 @@
 /** @var \DI\Container $container */
 
 use DI\Container;
+use Guedes\Moviestar\Services\UserService;
 use MongoDB\Client;
 
 $container->set('string_connection', function () {
@@ -22,4 +23,10 @@ $container->set('mongo', function (Container $container) {
 
 $container->set('flash', function () {
     return new Slim\Flash\Messages();
+});
+
+$container->set('user', function () use ($container) {
+    /** @var UserService $userService */
+    $userService = $container->get(UserService::class);
+    return $userService->verifyToken();
 });
