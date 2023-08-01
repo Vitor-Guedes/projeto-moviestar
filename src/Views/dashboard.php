@@ -22,12 +22,12 @@
                 {% for movie in user.getMovies() %}
                     <tr>
                         <td scope="row">1</td>
-                        <td><a href="<?= BASE_URL ?>/movie/<?= $movie->id ?>" class="table-movie-title"><?= $movie->title ?></a></td>
-                        <td><i class="fas fa-star"></i> <?= $movie->rating ?></td>
+                        <td><a href="{{ url_for('movie.show', {id: movie.id}) }}" class="table-movie-title">{{ movie.title }}</a></td>
+                        <td><i class="fas fa-star"></i>{{ movie.rating }}</td>
                         <td class="actions-column">
-                            <a href="<?= BASE_URL ?>/edit-movie/<?= $movie->id ?>" class="edit-btn"><i class="far fa-edit"></i> Editar </a>
+                            <a href="{{ url_for('movie.edit', {id: movie.id}) }}" class="edit-btn"><i class="far fa-edit"></i> Editar </a>
                             <form action="<?= BASE_URL ?>/process/movie/delete" method="post">
-                                <input type="hidden" name="id" id="id" value="<?= $movie->id ?>">
+                                <input type="hidden" name="id" id="id" value="{{ movie.id }}">
                                 <button type="submit" class="delete-btn">
                                     <i class="fas fa-times"></i> Deletar
                                 </button>

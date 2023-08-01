@@ -25,12 +25,12 @@
 
                 {% if (user) %}
                     <li class="nav-item">
-                        <a href="{{ base_path() }}/newmovie" class="nav-link">
+                        <a href="{{ url_for('movie.add') }}" class="nav-link">
                             <i class="far fa-plus-square"></i> Incluir Filme
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ base_path() }}/dashboard" class="nav-link">Meus Filmes</a>
+                        <a href="{{ url_for('dashboard') }}" class="nav-link">Meus Filmes</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ base_path() }}/edit/profile" class="nav-link bold">

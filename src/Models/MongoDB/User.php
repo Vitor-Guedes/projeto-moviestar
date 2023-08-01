@@ -3,6 +3,7 @@
 namespace Guedes\Moviestar\Models\MongoDB;
 
 use DI\Container;
+use Guedes\Moviestar\Services\MovieService;
 
 class User
 {
@@ -42,7 +43,7 @@ class User
 
     public function buildUser(array $data)
     {
-        $this->id = $data['id'] ?? '';
+        $this->id = $data['id'] ?? (string) $data['_id'];
         $this->name = $data['name'] ?? '';
         $this->lastname = $data['lastname'] ?? '';
         $this->email = $data['email'] ?? '';
@@ -117,6 +118,8 @@ class User
 
     public function getMovies()
     {
+        $movieServices = $this->container->get(MovieService::class);
+        return $movieServices->getMoviesByUserId($this->id);
         return [];
     }
 }

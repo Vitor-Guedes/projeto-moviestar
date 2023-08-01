@@ -9,11 +9,6 @@ class DashboardController
 {
     use UrlFor;
 
-    public function __construct()
-    {
-        
-    }
-
     public function __invoke($request, $response)
     {
         $view = Twig::fromRequest($request);
