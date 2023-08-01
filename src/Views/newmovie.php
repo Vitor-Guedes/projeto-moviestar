@@ -5,7 +5,6 @@
 
 {% include('components/messages.php') %}
 
-
 <div id="main-container" class="container-fluid">
     <div class="offset-md-4 col-md-4 new-movie-container">
         <h1 class="page-title">Adicionar Filme</h1>
@@ -47,5 +46,6 @@
         </form>
     </div>
 </div>
+
 {% include('components/footer.php') %}
 {% endblock %}

@@ -80,6 +80,38 @@ class Movie
 
     public function getImageMovie()
     {
-        return $this->image;
+        return "/images/movies/" . $this->image;
+    }
+
+    public function update()
+    {
+        $updateResult = $this->getCollection()
+            ->updateOne([
+                '_id' => new \MongoDB\Bson\ObjectId($this->id)
+            ], ['$set' => $this->toArray()]);
+        
+        return $updateResult->getModifiedCount() == 1
+            && $updateResult->getMatchedCount() == 1
+                ? $this 
+                    : false;
+    }
+
+    public function toArray()
+    {
+        $data = [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'image' => $this->image,
+            'trailer' => $this->trailer,
+            'category' => $this->category,
+            'length' => $this->length,
+            'user_id' => $this->user_id,
+            'rating' => $this->rating
+        ];
+
+        return array_filter($data, function ($attribute) {
+            return ! empty($attribute);
+        });
     }
 }

@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ base_path() }}/logout" class="nav-link">Sair</a>
+                        <a href="{{ url_for('logout') }}" class="nav-link">Sair</a>
                     </li>
                 {% else %}
                     <li class="nav-item">

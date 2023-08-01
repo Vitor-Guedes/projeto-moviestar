@@ -38,6 +38,12 @@ class UserService
         return false;
     }
 
+    public function destroyToken()
+    {
+        $_SESSION['token'] = '';
+        return true;
+    }
+
     public function authenticate(array $credentials = [])
     {
         try {

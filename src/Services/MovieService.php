@@ -36,4 +36,9 @@ class MovieService
     {
         return $this->movie->getMovieById($id);
     }
+
+    public function update($movie)
+    {
+        return $movie->update();
+    }
 }
