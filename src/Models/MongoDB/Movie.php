@@ -51,6 +51,7 @@ class Movie
         $this->category = $data['category'] ?? '';
         $this->length = $data['length'] ?? '';
         $this->rating = $data['rating'] ?? '';
+        $this->user_id = $data['user_id'] ?? '';
         return $this;
     }
 
@@ -78,9 +79,20 @@ class Movie
         return !$data ? false : $this->buildMovie((array) $data);
     }
 
+    public function getLastMovies()
+    {
+        $result = $this->getCollection()->find([], ['_id' => -1]);
+        $movies = [];
+        foreach ($result as $item) {
+            $movie = clone $this;
+            $movies[] = $movie->buildMovie((array) $item);
+        }
+        return $movies;
+    }
+
     public function getImageMovie()
     {
-        return "/images/movies/" . $this->image;
+        return "/images/" . $this->image;
     }
 
     public function update()

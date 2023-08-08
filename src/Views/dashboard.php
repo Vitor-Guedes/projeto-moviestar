@@ -6,7 +6,7 @@
     <h2 class="section-title">Dashboard</h2>
     <p class="section-description">Adicione ou atualize as informações dos filmes que você enviou.</p>
     <div class="col-md-12" id="add-movie-container">
-        <a href="newmovie" class="btn card-btn">
+        <a href="{{ url_for('movie.add') }}" class="btn card-btn">
             <i class="fas fa-plus"></i> Adicionar Filme
         </a>
     </div>

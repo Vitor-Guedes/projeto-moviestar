@@ -68,6 +68,11 @@ class UserService
         return $this->user->findByToken($token);
     }
 
+    public function fingById(string $id)
+    {
+        return $this->user->fingById($id);
+    }
+
     public function update(User $user)
     {
         return $user->update();

@@ -1,6 +1,6 @@
 <header>
     <nav id="main-navbar" class="navbar navbar-expand-lg">
-        <a href="{{ base_path() }}" class="navbar-brand">
+        <a href="{{ url_for('home') }}" class="navbar-brand">
             <img src="{{ base_path() }}/images/logo.svg" alt="MovieStar" id="logo">
             <span id="moviestar-title">MovieStar</span>
         </a>
@@ -21,8 +21,6 @@
         </form>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav">
-                <?php if ($userData) : ?>
-
                 {% if (user) %}
                     <li class="nav-item">
                         <a href="{{ url_for('movie.add') }}" class="nav-link">

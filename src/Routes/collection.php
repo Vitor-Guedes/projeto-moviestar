@@ -12,7 +12,9 @@ use Guedes\Moviestar\Controllers\{
     Movie\ShowController,
     Movie\EditController,
     Movie\UpdateController,
+    Review\StoreController as ReviewStoreController
 };
+use Guedes\Moviestar\Controllers\Movie\ViewController;
 use Guedes\Moviestar\Middleware\AuthMiddleware;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -28,6 +30,13 @@ $app->group('/user', function (RouteCollectorProxy $group) {
     $group->get('/movie/add', AddController::class)->setName('movie.add');
     $group->post('/movie/store', StoreController::class)->setName('movie.store');
     $group->get('/movie/show/{id}', ShowController::class)->setName('movie.show');
-    $group->get('/movie/edit/{id}', EditController::class)->setName('movie.edit'); /// continuar daqui
-    $group->post('/movie/update/{id}', UpdateController::class)->setName('movie.update'); /// continuar daqui
+    $group->get('/movie/edit/{id}', EditController::class)->setName('movie.edit');
+    $group->post('/movie/update/{id}', UpdateController::class)->setName('movie.update');
+
+    $group->post('/review/store', ReviewStoreController::class)->setName('review.store');
 })->add(new AuthMiddleware($container));
+
+$app->group('/movie', function ($group) {
+    $group->get('/view/{id}', ViewController::class)->setName('movie.view');
+});
+$app->get('/profile/{id}', function () {})->setName('user.profile');

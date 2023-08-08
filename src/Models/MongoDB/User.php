@@ -75,6 +75,14 @@ class User
         return !$data ? false : $this->buildUser((array) $data);
     }
 
+    public function fingById($id)
+    {
+        $data = $this->getCollection()->findOne([
+            '_id' => new \MongoDB\Bson\ObjectId($id)
+        ]);
+        return !$data ? false : $this->buildUser((array) $data);
+    }
+
     public function generatePassword(string $password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
@@ -83,6 +91,16 @@ class User
     public function generateToken()
     {
         return bin2hex(random_bytes(50));
+    }
+
+    public function getFullName()
+    {
+        return $this->name . ' ' . $this->lastname;
+    }
+
+    public function getImageUser()
+    {
+        return '/images/users/' . ($this->image ? $this->image : 'user.png');
     }
 
     public function update()

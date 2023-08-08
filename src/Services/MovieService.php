@@ -41,4 +41,9 @@ class MovieService
     {
         return $movie->update();
     }
+
+    public function getLastMovies()
+    {
+        return $this->movie->getLastMovies();
+    }
 }

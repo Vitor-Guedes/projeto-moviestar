@@ -29,6 +29,8 @@ $twig = Twig::create('../src/Views/', ['cache' => false]);
 $enviroment = $twig->getEnvironment();
 $enviroment->addGlobal('flash', $container->get('flash'));
 $enviroment->addGlobal('user', $container->get('user'));
+$enviroment->addGlobal('movieService', $container->get('movieService'));
+$enviroment->addGlobal('reviewService', $container->get('reviewService'));
 
 // Add Twig-View Middleware
 $app->add(TwigMiddleware::create($app, $twig));

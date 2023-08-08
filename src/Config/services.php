@@ -4,6 +4,8 @@
 
 use DI\Container;
 use Guedes\Moviestar\Services\UserService;
+use Guedes\Moviestar\Services\MovieService;
+use Guedes\Moviestar\Services\ReviewService;
 use MongoDB\Client;
 
 $container->set('string_connection', function () {
@@ -29,4 +31,16 @@ $container->set('user', function () use ($container) {
     /** @var UserService $userService */
     $userService = $container->get(UserService::class);
     return $userService->verifyToken();
+});
+
+$container->set('movieService', function () use ($container) {
+    return $container->get(MovieService::class);
+});
+
+$container->set('reviewService', function () use ($container) {
+    return $container->get(ReviewService::class);
+});
+
+$container->set('userService', function () use ($container) {
+    return $container->get(UserService::class);
 });
