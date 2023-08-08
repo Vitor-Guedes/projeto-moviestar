@@ -31,7 +31,7 @@
                         <a href="{{ url_for('dashboard') }}" class="nav-link">Meus Filmes</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ base_path() }}/edit/profile" class="nav-link bold">
+                        <a href="{{ url_for('user.edit-profile') }}" class="nav-link bold">
                             {{ user.name }}
                         </a>
                     </li>

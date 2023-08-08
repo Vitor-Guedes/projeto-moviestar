@@ -7,6 +7,10 @@ use Guedes\Moviestar\Controllers\{
     Account\RegisterController,
     Account\DashboardController,
     Account\LogoutController,
+    Account\UpdatePasswordController,
+    Account\Profile\EditController as ProfileEditController,
+    Account\Profile\UpdateController as ProfileUpdateController,
+    Account\Profile\ViewController as ProfileViewController,
     Movie\AddController,
     Movie\StoreController,
     Movie\ShowController,
@@ -34,9 +38,12 @@ $app->group('/user', function (RouteCollectorProxy $group) {
     $group->post('/movie/update/{id}', UpdateController::class)->setName('movie.update');
 
     $group->post('/review/store', ReviewStoreController::class)->setName('review.store');
+    $group->get('/edit/profile', ProfileEditController::class)->setName('user.edit-profile');
+    $group->post('/update/profile', ProfileUpdateController::class)->setName('user.update-profile');
+    $group->post('/update/password', UpdatePasswordController::class)->setName('user.update-password');
 })->add(new AuthMiddleware($container));
 
 $app->group('/movie', function ($group) {
     $group->get('/view/{id}', ViewController::class)->setName('movie.view');
 });
-$app->get('/profile/{id}', function () {})->setName('user.profile');
+$app->get('/profile/{id}', ProfileViewController::Class)->setName('user.profile');
